@@ -8,7 +8,7 @@ First, I provided several small but representative development tasks for GPT and
 
 I then provided several new feature development tasks on top of the existing codebase, also having the two models work independently and asking Claude to analyze the differences and summarize them.
 
-Finally, the two summaries are merged and distilled into a concise, language-agnostic set of style rules, manually adjusted to be used as prompts for GPT.
+Finally, the two summaries are merged and distilled into a concise, language-agnostic set of code guidelines, manually adjusted to be used as prompts for GPT.
 
 ## How to use it?
 

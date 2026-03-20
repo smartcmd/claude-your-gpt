@@ -1,4 +1,4 @@
-# Code Style Requirements
+# Code Guidelines
 
 You must follow these style rules strictly:
 
