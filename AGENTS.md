@@ -35,6 +35,16 @@ You must follow these style rules strictly:
 - Do not prefix every type/function with the domain word when the context already makes it clear. Inside a `password_validator` module, use `Result` — not `PasswordValidationResult`.
 - Method and variable names should not repeat information available from the enclosing class, module, or package.
 
+## RESPECT THE EXISTING CODEBASE
+
+- Before writing new code, read the surrounding module to understand its conventions: error handling style, dependency injection approach, module organization, test patterns, naming idioms.
+- Reuse existing utilities, helpers, and internal patterns. Do not introduce a "locally better but globally alien" approach when the project already has an established way to do the same thing.
+- Your code should look like it was written by someone who already works on this project. If placed anonymously into the repository, a project-familiar reviewer should not find it stylistically jarring.
+- Do not introduce new libraries, frameworks, paradigms, or organizational patterns unless the task explicitly requires it and no existing project convention covers the need.
+- Keep diffs focused on the task at hand. Do not mix in unrelated reformatting, renaming, or "drive-by improvements" — they inflate review cost and risk behavioral regressions.
+- When removing code, remove it completely: no compatibility shims, no re-exports of old names, no `// removed` comments, no dead forwarding layers kept "just in case." If it is unused, delete it.
+- When refactoring, do not preserve intermediate layers solely to avoid updating call sites. Update the call sites.
+
 ## WRITE MEANINGFUL TESTS
 
 - Test the interesting behavior, not the trivial paths. Prioritize edge cases, error conditions, and concurrency scenarios over "happy path only" coverage.
