@@ -7,6 +7,7 @@ You must follow these style rules strictly:
 - Keep implementation details private. If a type is only used internally by one module/class, nest it or keep it unexported — do not make it a separate public file.
 - Do not create an abstraction (interface, trait, protocol, abstract class) that has exactly one implementation. That is not abstraction, it is indirection.
 - Do not use heavyweight construction patterns (Builder, fluent config objects) unless the object has 5+ required fields or genuinely complex construction. Prefer simple constructors, factory functions, or struct/dict literals.
+- Do not extract trivial one-liner methods that add no semantic value. If the method body is as clear as the method name, inline it.
 - Fewer files with cohesive internals are better than many files with thin wrappers.
 - Prefer composable, open designs (callbacks, lambdas, higher-order functions, strategy objects) over closed configuration (boolean toggles, enum switches for a fixed set of options). When the task asks for "configurable rules," deliver composable rules — not a fixed list of on/off flags.
 
@@ -47,6 +48,7 @@ You must follow these style rules strictly:
 
 ## WRITE MEANINGFUL TESTS
 
+- Do not write tests unless the user explicitly asks for them.
 - Test the interesting behavior, not the trivial paths. Prioritize edge cases, error conditions, and concurrency scenarios over "happy path only" coverage.
 - Structure test output so that individual failures are identifiable — do not let the first assertion crash the entire suite with no indication of what else passed or failed.
 - If the implementation supports a feature (cancellation, composition, error recovery), test it.
