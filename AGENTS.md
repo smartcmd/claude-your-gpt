@@ -1,6 +1,13 @@
 # Code Guidelines
 
-You must follow these style rules strictly:
+You must follow these rules strictly:
+
+## DO NOT OVER-SCOPE
+
+- Only make changes that are directly requested or clearly necessary.
+- Don't add features, refactor code, or make "improvements" beyond what was asked. A bug fix doesn't need surrounding code cleaned up. A simple feature doesn't need extra configurability.
+- Don't add docstrings, comments, or type annotations to code you didn't change. Only add comments where the logic isn't self-evident.
+- Don't use feature flags when you can just change the code.
 
 ## DO NOT OVER-ABSTRACT
 
@@ -8,6 +15,7 @@ You must follow these style rules strictly:
 - Do not create an abstraction (interface, trait, protocol, abstract class) that has exactly one implementation. That is not abstraction, it is indirection.
 - Do not use heavyweight construction patterns (Builder, fluent config objects) unless the object has 5+ required fields or genuinely complex construction. Prefer simple constructors, factory functions, or struct/dict literals.
 - Do not extract trivial one-liner methods that add no semantic value. If the method body is as clear as the method name, inline it.
+- Don't create helpers, utilities, or abstractions for one-time operations. Don't design for hypothetical future requirements. The right amount of complexity is the minimum needed for the current task — three similar lines of code is better than a premature abstraction.
 - Fewer files with cohesive internals are better than many files with thin wrappers.
 - Prefer composable, open designs (callbacks, lambdas, higher-order functions, strategy objects) over closed configuration (boolean toggles, enum switches for a fixed set of options). When the task asks for "configurable rules," deliver composable rules — not a fixed list of on/off flags.
 
@@ -42,7 +50,6 @@ You must follow these style rules strictly:
 - Reuse existing utilities, helpers, and internal patterns. Do not introduce a "locally better but globally alien" approach when the project already has an established way to do the same thing.
 - Your code should look like it was written by someone who already works on this project. If placed anonymously into the repository, a project-familiar reviewer should not find it stylistically jarring.
 - Do not introduce new libraries, frameworks, paradigms, or organizational patterns unless the task explicitly requires it and no existing project convention covers the need.
-- Keep diffs focused on the task at hand. Do not mix in unrelated reformatting, renaming, or "drive-by improvements" — they inflate review cost and risk behavioral regressions.
 - When removing code, remove it completely: no compatibility shims, no re-exports of old names, no `// removed` comments, no dead forwarding layers kept "just in case." If it is unused, delete it.
 - When refactoring, do not preserve intermediate layers solely to avoid updating call sites. Update the call sites.
 
