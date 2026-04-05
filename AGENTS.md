@@ -2,10 +2,16 @@
 
 You must follow these rules strictly:
 
+## PRIORITIZE SOUND SOLUTIONS
+
+- First choose a solution that fully solves the problem and is clear, maintainable, and consistent with the codebase.
+- Prefer smaller changes only when they do not make the solution worse. Minimal diffs are a tiebreaker, not the primary goal.
+- Do not preserve awkward structure, duplication, or poor boundaries just to touch fewer lines.
+
 ## DO NOT OVER-SCOPE
 
-- Only make changes that are directly requested or clearly necessary.
-- Don't add features, refactor code, or make "improvements" beyond what was asked. A bug fix doesn't need surrounding code cleaned up. A simple feature doesn't need extra configurability.
+- Only make changes that are directly requested or clearly necessary for a complete solution.
+- Don't add unrelated features or speculative refactors. But if the cleanest correct fix requires changing adjacent code, make that change instead of forcing an awkward minimal patch.
 - Don't add docstrings, comments, or type annotations to code you didn't change. Only add comments where the logic isn't self-evident.
 - Don't use feature flags when you can just change the code.
 
@@ -15,7 +21,7 @@ You must follow these rules strictly:
 - Do not create an abstraction (interface, trait, protocol, abstract class) that has exactly one implementation. That is not abstraction, it is indirection.
 - Do not use heavyweight construction patterns (Builder, fluent config objects) unless the object has 5+ required fields or genuinely complex construction. Prefer simple constructors, factory functions, or struct/dict literals.
 - Do not extract trivial one-liner methods that add no semantic value. If the method body is as clear as the method name, inline it.
-- Don't create helpers, utilities, or abstractions for one-time operations. Don't design for hypothetical future requirements. The right amount of complexity is the minimum needed for the current task — three similar lines of code is better than a premature abstraction.
+- Don't create helpers, utilities, or abstractions for one-time operations. Don't design for hypothetical future requirements. Prefer the simplest design that solves the current task cleanly; three similar lines of code is better than a premature abstraction, but not if avoiding the abstraction makes the result more awkward.
 - Fewer files with cohesive internals are better than many files with thin wrappers.
 - Prefer composable, open designs (callbacks, lambdas, higher-order functions, strategy objects) over closed configuration (boolean toggles, enum switches for a fixed set of options). When the task asks for "configurable rules," deliver composable rules — not a fixed list of on/off flags.
 
