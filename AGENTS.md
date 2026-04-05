@@ -33,17 +33,6 @@ You must follow these rules strictly:
 - If the language provides exhaustiveness checking (e.g., sealed types + switch, match expressions, tagged unions), use it. Compiler-enforced completeness is better than a default/else branch that hides missing cases.
 - Do not manually write what the language generates for free (toString, equality, hash, serialization).
 
-## CHOOSE GOOD ALGORITHMS
-
-- Think about the read/write ratio of your data structure. For read-heavy paths, pay the cost at write time (sorted insertion, precomputed indexes). Do not sort or scan on every read.
-- Prefer the narrower traversal. Walk a known-depth hierarchy rather than scanning all registered entries. Filter early rather than collecting everything then filtering.
-- Do not allocate objects that have no effect (e.g., wrapping a value in a node that evaluates to itself). If an operation is a no-op, skip it.
-
-## NAME THINGS CONCISELY
-
-- Do not prefix every type/function with the domain word when the context already makes it clear. Inside a `password_validator` module, use `Result` — not `PasswordValidationResult`.
-- Method and variable names should not repeat information available from the enclosing class, module, or package.
-
 ## RESPECT THE EXISTING CODEBASE
 
 - Before writing new code, read the surrounding module to understand its conventions: error handling style, dependency injection approach, module organization, test patterns, naming idioms.
